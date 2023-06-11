@@ -1,0 +1,15 @@
+.logo-container {
+  padding: 13px;
+}
+
+.logo {
+  display: flex;
+}
+
+.logo span {
+  color: #36352b;
+  padding-left: 3vh;
+  font-size: 4vh;
+  display: flex;
+  align-items: center;
+}

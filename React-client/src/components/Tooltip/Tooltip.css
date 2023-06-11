@@ -1,0 +1,35 @@
+.tooltip-container {
+  position: absolute;
+  background-color: white;
+  border-radius: 10px;
+  width: 18.5vw;
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
+  transition: 0.5s;
+}
+
+.tooltip-wrapper{
+  padding: 10px;
+}
+
+.tooltip-error {
+  display: flex;
+  align-items: flex-start;
+}
+
+.tooltip-error:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.tooltip-error img {
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.tooltip-child:hover .tooltip-container {
+  opacity: 1;
+  max-height: 500px;
+}
+
