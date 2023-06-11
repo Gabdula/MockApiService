@@ -1,0 +1,20 @@
+\l -	информация о существующих таблицах
+\c - 	подключение к базе
+\conninfo -	получить сведения о подключеной базе 
+\d -	перейти к таблице
+\! chcp 1251 -	русская кодировка
+\! cls -	очистка консоли
+
+
+//Создание GUID
+
+1.CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+2.CREATE TABLE contacts (
+    contact_id uuid DEFAULT uuid_generate_v4 (),
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    phone VARCHAR,
+    PRIMARY KEY (contact_id)
+  );
