@@ -25,7 +25,7 @@ export const accountRegistration = (login, email, password) => async (dispatch) 
     store.dispatch(
       userRegistrationSuccess({
         dataUser: response.data,
-        isLoading: false,
+        isLoadingUser: false,
         isSuccess: true,
         data: {
           modalActive: true,
@@ -34,12 +34,11 @@ export const accountRegistration = (login, email, password) => async (dispatch) 
           text: 'Ваш аккаунт успешно создан, пожалуйста активируйте его, перейдя, по отправленной вам ссылке на почту.',
         },
       }),
-      console.log(1)
     );
   } catch (e) {
     store.dispatch(
       userRegistrationError({
-        isLoading: false,
+        isLoadingUser: false,
         isSuccess: false,
         data: {
           modalActive: true,
@@ -60,7 +59,7 @@ export const accountLogin = (login, password) => async (dispatch) => {
     store.dispatch(
       userLoginSuccess({
         dataUser: response.data,
-        isLoading: false,
+        isLoadingUser: false,
         data: {
           modalActive: true,
           imgInfo: 'accept',
@@ -72,7 +71,7 @@ export const accountLogin = (login, password) => async (dispatch) => {
   } catch (e) {
     store.dispatch(
       userLoginError({
-        isLoading: false,
+        isLoadingUser: false,
         data: {
           modalActive: true,
           imgInfo: 'error',
@@ -85,13 +84,12 @@ export const accountLogin = (login, password) => async (dispatch) => {
 };
 
 export const accountLogout = () => async (dispatch) => {
-  let response;
   try {
     store.dispatch(userLogout(true));
-    response = await AuthService.logout();
+    await AuthService.logout();
     store.dispatch(
       userLogoutSuccess({
-        isLoading: false,
+        isLoadingUser: false,
         data: {
           modalActive: true,
           imgInfo: 'alert',
@@ -103,7 +101,7 @@ export const accountLogout = () => async (dispatch) => {
   } catch (e) {
     store.dispatch(
       userLogoutError({
-        isLoading: false,
+        isLoadingUser: false,
         data: {
           modalActive: true,
           imgInfo: 'error',
@@ -119,11 +117,11 @@ export const accountCheckAuth = () => async (dispatch) => {
   try {
     store.dispatch(checkAuth(true));
     const response = await axios.get(`${API_URL}user/refresh`, { withCredentials: true });
-    store.dispatch(checkAuthSuccess({ dataUser: response.data, isLoading: false, }));
+    store.dispatch(checkAuthSuccess({ dataUser: response.data, isLoadingUser: false, }));
   } catch (e) { 
     store.dispatch(
       checkAuthError({
-        isLoading: false,
+        isLoadingUser: false,
         data: {
           modalActive: true,
           imgInfo: 'error',

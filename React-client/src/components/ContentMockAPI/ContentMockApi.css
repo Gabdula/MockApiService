@@ -1,5 +1,6 @@
 .ContentMockAPI-container{
  display: flex;
+ flex-grow: 1;
  flex-wrap: wrap;
  justify-content: space-between;
 }
@@ -33,4 +34,14 @@
 .ContentMockAPI-create button:hover{
   background-color: #95916E;
 
+}
+
+.ContentMockAPI-empty-project{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 5vh;
+  color: #64624D;
+  padding-bottom: 20vh;
 }

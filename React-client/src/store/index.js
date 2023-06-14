@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./Reducers/UserReducer";
 import ModalInfoReducer from "./Reducers/ModalInfoReducer";
+import ProjectReducer from "./Reducers/ProjectReducer";
 
 const rootReducer = combineReducers({
   userStore: userReducer,
   modalInfo: ModalInfoReducer,
+  projectStore: ProjectReducer,
 })
 
 export const store = configureStore({

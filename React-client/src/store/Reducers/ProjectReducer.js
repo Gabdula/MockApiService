@@ -3,114 +3,137 @@ import { createSlice } from '@reduxjs/toolkit';
 const projectSlice = createSlice({
   name: 'projectStore',
   initialState: {
-    project: {},
-    isLoading: false,
-    isErrorFetch: {}
+    project: [],
+    isLoadingProject: false,
+    isErrorFetch: {},
   },
   reducers: {
-    loadPage(state, action){
-      return {...state, isLoading: action.payload.isLoading}
+    loadPage(state, action) {
+      return { ...state, isLoadingProject: action.payload.isLoadingProject };
     },
     ///////////////////////////////////
     //         get projects          //
     ///////////////////////////////////
-    getUserProjects(state) {
-      return { ...state, isLoading: true };
+    getUserProjectsLoad(state) {
+      return { ...state, isLoadingProject: true };
     },
     getUserProjectsSuccess(state, action) {
       return {
         ...state,
-        user: action.payload.dataProject,
-        isLoading: false,
+        project: action.payload.dataProject,
+        isLoadingProject: action.payload.isLoadingProject,
         isErrorFetch: action.payload.data,
       };
     },
     getUserProjectsError(state, action) {
-      return { 
+      return {
         ...state,
-        isLoading: action.payload.isLoading, 
-        isErrorFetch: action.payload.data 
+        isLoadingProject: action.payload.isLoadingProject,
+        isErrorFetch: action.payload.data,
       };
     },
 
     ///////////////////////////////////
-    //         registration          //
+    //        create Project         //
     ///////////////////////////////////
-    userRegistration(state, action) {
-      return { ...state, isLoading: action.payload.isLoading };
+    createProjectLoad(state, action) {
+      return { ...state, isLoadingProject: action.payload.isLoadingProject };
     },
-    userRegistrationSuccess(state, action) {
+    createProjectSuccess(state, action) {
       return {
         ...state,
-        isLoading: action.payload.isLoading,
-        user: action.payload.dataUser,
-        isAuth: false,
-        isErrorFetch: action.payload.data,
-        isSuccess: action.payload.isSuccess,
-      };
-    },
-    userRegistrationError(state, action) {
-      return {
-        ...state,
-        isLoading: action.payload.isLoading,
-        isErrorFetch: action.payload.data,
-        isSuccess: action.payload.isSuccess,
-      };
-    },
-    ///////////////////////////////////
-    //            logout             //
-    ///////////////////////////////////
-    userLogout(state, action) {
-      return { ...state, isLoading: action.payload.isLoading };
-    },
-    userLogoutSuccess(state, action) {
-      localStorage.removeItem('token');
-      return {
-        ...state,
-        isLoading: action.payload.isLoading,
-        user: {},
-        isAuth: false,
+        isLoadingProject: action.payload.isLoadingProject,
         isErrorFetch: action.payload.data,
       };
     },
-    userLogoutError(state, action) {
-      return { ...state, isLoading: action.payload.isLoading, isErrorFetch: action.payload.data };
-    },
-    ///////////////////////////////////
-    //           checkAuth           //
-    ///////////////////////////////////
-    checkAuth(state, action) {
-      return { isLoading: true };
-    },
-    checkAuthSuccess(state, action) {
-      localStorage.setItem('token', action.payload.dataUser.accessToken);
+    createProjectError(state, action) {
       return {
         ...state,
-        user: action.payload.dataUser,
-        isAuth: true,
-        isErrorFetch: {},
-        isLoading: action.payload.isLoading,
+        isLoadingProject: action.payload.isLoadingProject,
+        isErrorFetch: action.payload.data,
       };
     },
-    checkAuthError(state, action) {
-      return { ...state, isLoading: action.payload.isLoading, isErrorFetch: action.payload.data };
+
+    ///////////////////////////////////
+    //         clone Project         //
+    ///////////////////////////////////
+    cloneProjectLoad(state, action) {
+      return { ...state, isLoadingProject: action.payload.isLoadingProject };
+    },
+    cloneProjectSuccess(state, action) {
+      return {
+        ...state,
+        isLoadingProject: action.payload.isLoadingProject,
+        isErrorFetch: action.payload.data,
+      };
+    },
+    cloneProjectError(state, action) {
+      return {
+        ...state,
+        isLoadingProject: action.payload.isLoadingProject,
+        isErrorFetch: action.payload.data,
+      };
+    },
+
+    ///////////////////////////////////
+    //         edit projects         //
+    ///////////////////////////////////
+    editProjectLoad(state) {
+      return { ...state, isLoadingProject: true };
+    },
+    editProjectSuccess(state, action) {
+      return {
+        ...state,
+        isLoadingProject: action.payload.isLoadingProject,
+        isErrorFetch: action.payload.data,
+      };
+    },
+    editProjectError(state, action) {
+      return {
+        ...state,
+        isLoadingProject: action.payload.isLoadingProject,
+        isErrorFetch: action.payload.data,
+      };
+    },
+
+    ///////////////////////////////////
+    //        delete Project         //
+    ///////////////////////////////////
+    deleteProjectLoad(state) {
+      return { ...state, isLoadingProject: true };
+    },
+    deleteProjectSuccess(state, action) {
+      return {
+        ...state,
+        isLoadingProject: false,
+        isErrorFetch: action.payload.data,
+      };
+    },
+    deleteProjectError(state, action) {
+      return {
+        ...state,
+        isLoadingProject: action.payload.isLoadingProject,
+        isErrorFetch: action.payload.data,
+      };
     },
   },
 });
 
-export default userSlice.reducer;
+export default projectSlice.reducer;
 export const {
-  userLogin,
-  userLoginSuccess,
-  userLoginError,
-  userRegistration,
-  userRegistrationSuccess,
-  userRegistrationError,
-  userLogout,
-  userLogoutSuccess,
-  userLogoutError,
-  checkAuth,
-  checkAuthSuccess,
-  checkAuthError,
-  loadPage,
-} = userSlice.actions;
+  getUserProjectsLoad,
+  getUserProjectsError,
+  getUserProjectsSuccess,
+  cloneProjectLoad,
+  cloneProjectError,
+  cloneProjectSuccess,
+  createProjectLoad,
+  createProjectError,
+  createProjectSuccess,
+  editProjectLoad,
+  editProjectError,
+  editProjectSuccess,
+  deleteProjectLoad,
+  deleteProjectError,
+  deleteProjectSuccess,
+} = projectSlice.actions;

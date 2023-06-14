@@ -23,7 +23,7 @@ const MenuPage = () => {
               <p>About</p>
             </div>
           </div>
-          <div>
+          <div style={{"flex-grow": "1", "display": "flex", "flexDirection": "column"}}>
             <ContentMockAPI/>
           </div>
         </div>

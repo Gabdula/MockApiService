@@ -13,7 +13,6 @@ class ModelService {
         tempObject[Schema[j].name] = dataGenerate[`${Schema[j].type}`]();
       } 
       jsonObject.push(tempObject); 
-      console.log(tempObject)
     }
     
     await client.query(

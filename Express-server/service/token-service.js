@@ -33,8 +33,6 @@ class TokenService {
   }
 
   async saveToken(userId, refreshToken) {
-    console.log(userId)
-    console.log(refreshToken)
     //Проверка на существование токена в бд
     const tokenExist = await client.query(
       `select exists (select * from public.token where user_id = $1)`,

@@ -2,7 +2,7 @@ import $api from '../http';
 
 export default class ProjectService {
   static async getUserProjects(userID) {
-    return await $api.get('/proj/getProjects', { userID });
+    return await $api.get(`/proj/getProjects/${userID}`);
   }
 
   static async createProject(projectName, userID, prefixApi) {
