@@ -54,11 +54,15 @@
 }
 
 .sidebar-menu__nav-links p {
-  padding: 20px 0;
+  padding: 30px 0;
   display: flex;
-  padding-left: 25px;
+  padding-left: 20px;
   gap: 3.8vh 3.2vh;
   flex-grow: 1;
+}
+
+.sidebar-menu__nav-links__profile{
+  padding: 10px 0 30px 10px!important;
 }
 
 .sidebar-menu__nav-links p:first-child:hover {
@@ -95,6 +99,7 @@
 .sidebar-menu__profile {
   display: flex;
   flex-direction: column;
+  width: 8vw;
 }
 
 .sidebar-menu__profile span:first-child {

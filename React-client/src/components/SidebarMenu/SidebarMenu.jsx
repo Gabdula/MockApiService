@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SidebarMenu.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { accountLogout } from '../../store/Actions/ActionCreator';
 
 const SidebarMenu = (props) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigate()
+  const { user } = useSelector((state) => state.userStore);
+
+  const logoutUser = () => {
+    navigation('/')
+    dispatch(accountLogout())
+  }
+  
   return (
     <>
       {/* sidebar-menu__link-name__close */}
@@ -39,15 +51,17 @@ const SidebarMenu = (props) => {
             </li>
 
             <li style={{ marginTop: "auto" }}>
-              <p style={{paddingLeft: "15px"}}>
+              <p className='sidebar-menu__nav-links__profile' onClick={() => logoutUser()}>
                 <img src="image/logo-site.png" alt="logo" width={60} height={60} />
                 <div id="side-profile-span" className='sidebar-menu__profile'>
-                  <span>Template name<br/></span>
-                  <span>Admin</span>
+                  <span>{user.user.user}<br/></span>
+                  <span>{user.user.role.map((item) => `${item} `)}</span>
                 </div>
                 <img id="side-profile-img" className='sidebar-menu__nav-links__img' src="image/sidebar-exit.svg" alt="mockapi" width={40} />
               </p>
+              
             </li>
+            
           </ul>
         </div>
       </div>

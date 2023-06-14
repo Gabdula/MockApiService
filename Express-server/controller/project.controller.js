@@ -4,7 +4,7 @@ const projectService = new ProjectService();
 class ProjectController {
   async GetUserProject(req, res) {
     try {
-      const { user_id } = req.body;
+      const { user_id } = req.body; 
       // const allProjects = await client.query(
       //   `select p.project_id, p.project_name, p.project_owner, p.date_create, p.isactive from public.project as p 
       //                                         left join public.user_project as up on up.project_id = p.project_id 

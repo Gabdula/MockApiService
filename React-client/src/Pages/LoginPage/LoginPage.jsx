@@ -4,7 +4,7 @@ import '../OffsetStyle.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Tooltip from '../../components/Tooltip/Tooltip';
 import { useInput, inputArrayErrors  } from '../../hooks/ValidationField'
-import { setModalInfo } from '../../store/ModalInfoReducer';
+
 import { accountLogin } from '../../store/Actions/ActionCreator';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,20 +18,10 @@ const LoginPage = () => {
   const [validLogin, setValidLogin] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
 
-  // Отрисовка модального окна ошибки
-  const { isErrorFetch, isSuccess } = useSelector((state) => state.userStore);
-  useEffect(() => {
-    if (isErrorFetch !== undefined) {
-      dispatch(setModalInfo(isErrorFetch));
-    }
-    if (isSuccess !== undefined){
-      dispatch(setModalInfo(isSuccess));
-    }
-  }, [isErrorFetch, isSuccess, dispatch]);
-
   const { isAuth } = useSelector((state) => state.userStore);
   useEffect(() => {
-    navigation('/')
+    if(isAuth === true)
+    navigation('/menu')
   }, [isAuth]);
 
   useEffect(() => {

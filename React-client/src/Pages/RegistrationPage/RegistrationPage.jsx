@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { accountRegistration } from '../../store/Actions/ActionCreator';
+import { useInput, inputArrayErrors, confirmPasswords } from '../../hooks/ValidationField';
+import { useNavigate } from 'react-router-dom';
+import Tooltip from '../../components/Tooltip/Tooltip';
 import '../LoginPage/LoginPage.css';
 import '../OffsetStyle.css';
-import { accountRegistration } from '../../store/Actions/ActionCreator';
-import { setModalInfo } from '../../store/ModalInfoReducer';
-import { useInput, inputArrayErrors, confirmPasswords } from '../../hooks/ValidationField';
-import Tooltip from '../../components/Tooltip/Tooltip';
-import { useNavigate } from 'react-router-dom';
 
 
 const RegistrationPage = () => {
@@ -27,16 +25,11 @@ const RegistrationPage = () => {
   const [regSuccess, setRegSuccess] = useState(false)
   const [confirm, setConfirm] = useState(true);
 
-  // Отрисовка модального окна ошибки
-  const { isErrorFetch, isSuccess } = useSelector((state) => state.userStore);
+  const { isSuccess } = useSelector((state) => state.userStore);
   useEffect(() => {
-    if (isErrorFetch !== undefined) {
-      dispatch(setModalInfo(isErrorFetch));
-    }
-    if (isSuccess !== undefined){
-      dispatch(setModalInfo(isSuccess));
-    }
-  }, [isErrorFetch, isSuccess, dispatch]);
+    if(isSuccess === true)
+    navigation('/login')
+  }, [isSuccess]);
 
   useEffect(() => {
     if(login.isChange || regSuccess === true){
@@ -162,7 +155,6 @@ const RegistrationPage = () => {
               <div className="auth-block__button__bottom">
                 <div className="auth-block__button">
                   <button onClick={() => checkFieldsOnClick()}>Sign Up</button>
-                  {/* <button onClick={accountRegistration(login.value, email.value, password.value)}>Sign Up</button> */}
                 </div>
                 <p className="auth-block__signup" onClick={() => navigation('/login')}>Sign In</p>
               </div>

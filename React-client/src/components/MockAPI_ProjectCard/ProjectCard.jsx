@@ -26,7 +26,7 @@ const ProjectCard = () => {
         <div className='project-card-bottomCard'>
           <div className='project-card-on-off'>
             <input type="checkbox" id={id} />
-            <label for={id}>Toggle</label>
+            <label htmlFor={id}>Toggle</label>
             <p>Off</p>
           </div>
           <div className='project-card-count-resources'>

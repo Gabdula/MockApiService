@@ -4,7 +4,7 @@ import './MenuPage.css';
 import SidebarMenu from '../../components/SidebarMenu/SidebarMenu';
 import ContentMockAPI from '../../components/ContentMockAPI/ContentMockAPI';
 
-const MenuPage = () => {
+const MenuPage = () => { 
   return (
     <>
       <div className="menuPage-container">

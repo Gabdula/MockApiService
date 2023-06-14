@@ -1,9 +1,10 @@
 import React from 'react';
 import './HomePage.css';
 import '../OffsetStyle.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigation = useNavigate()
   return (
     <>
       <div className="container-home">
@@ -18,7 +19,7 @@ const HomePage = () => {
             <p>Products</p>
             <p>Services</p>
             <p>About</p>
-            <button>Sign In</button>
+            <button onClick={() => navigation('/registration')}>Sign Up</button>
           </div>
         </div>
         <div className="home-content">
@@ -33,7 +34,7 @@ const HomePage = () => {
           </div>
           <div className="home-content__button">
             <button>Buy a subscription</button>
-            <button>Get started</button>
+            <button onClick={() => navigation('/login')}>Get started</button>
           </div>
         </div>
       </div>

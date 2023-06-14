@@ -1,50 +1,79 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useEffect } from 'react';
+import { RouterProvider, createBrowserRouter, useRoutes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import ModalInfo from './components/ModalInfo/ModalInfo';
+import { accountCheckAuth } from './store/Actions/ActionCreator';
+import { setModalInfo } from './store/Reducers/ModalInfoReducer';
+import Preloader from './components/Preloader/Preloader'
+import { loadPage } from './store/Reducers/UserReducer';
+
 import HomePage from './Pages/HomePage/HomePage';
-import ErrorLoadPage from './Pages/ErrorLoadPage/ErrorLoadPage';
 import ProjectsUserPage from './Pages/ProjectsUserPage/ProjectsUserPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import RegistrationPage from './Pages/RegistrationPage/RegistrationPage';
 import MenuPage from './Pages/MenuPage/MenuPage';
-import ModalInfo from './components/ModalInfo/ModalInfo';
+
 
 function App() {
-  const modalInfo = useSelector(state => state.modalInfo.modal)
+  const dispatch = useDispatch();
+  const modalInfo = useSelector((state) => state.modalInfo.modal);
+  const { isLoading, isAuth } = useSelector((state) => state.userStore);
 
   const router = createBrowserRouter([
     {
-      path: '/login',
-      element: <LoginPage />,
-      errorElement: <ErrorLoadPage />,
-    },
-    {
-      path: '/registration',
-      element: <RegistrationPage />
-    },
-    {
-      path: '/home',
+      path: '/',
       element: <HomePage />,
     },
     {
-      path: '/',
-      element: <MenuPage />,
+      path: 'login', 
+      element: <LoginPage />
     },
     {
-      path: '/projects',
-      element: <ProjectsUserPage />,
+      path: 'registration',
+      element: <RegistrationPage />
     },
-  ]);
+    {
+      path: 'menu', 
+      element: isAuth ? <MenuPage /> : <Navigate to="/login" />
+    },
+    {
+      path: '/', 
+      element: <Navigate to="/" />
+    },
+  ])
+
+  useEffect(() => {
+    dispatch(loadPage({isLoading: false}))
+    if (localStorage.getItem('token')) {
+      dispatch(accountCheckAuth());
+      console.log('Пользователь авторизован');
+    } else {
+      console.log('Авторизуйтесь');
+    }
+  }, []);
+
+  // Отрисовка модального окна ошибки
+  const { isErrorFetch } = useSelector((state) => state.userStore);
+  useEffect(() => {
+    if (isErrorFetch !== undefined) {
+      dispatch(setModalInfo(isErrorFetch));
+    }
+  }, [isErrorFetch]);
+
+  if (isLoading) {
+    return <Preloader/>
+  }
 
   return (
     <>
       <RouterProvider router={router} />
       <ModalInfo
-          active={modalInfo.modalActive}
-          imgInfo={modalInfo.imgInfo}
-          title={modalInfo.title}
-          text={modalInfo.text}
-        />
-    </>
+        active={modalInfo.modalActive}
+        imgInfo={modalInfo.imgInfo}
+        title={modalInfo.title}
+        text={modalInfo.text}
+      />
+    </>  
   );
 }
 

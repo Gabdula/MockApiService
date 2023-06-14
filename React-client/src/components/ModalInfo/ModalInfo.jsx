@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ModalInfo.css'
-import { setModalInfo } from '../../store/ModalInfoReducer';
+import { setModalInfo } from '../../store/Reducers/ModalInfoReducer';
 
 const ModalInfo = (props) => {
   const dispatch = useDispatch()
