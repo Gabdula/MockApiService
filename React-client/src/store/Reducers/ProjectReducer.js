@@ -5,7 +5,7 @@ const projectSlice = createSlice({
   initialState: {
     project: [],
     isLoadingProject: false,
-    isErrorFetch: {},
+    isErrorFetchProject: {},
   },
   reducers: {
     loadPage(state, action) {
@@ -22,14 +22,13 @@ const projectSlice = createSlice({
         ...state,
         project: action.payload.dataProject,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
       };
     },
     getUserProjectsError(state, action) {
       return {
         ...state,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
 
@@ -43,14 +42,14 @@ const projectSlice = createSlice({
       return {
         ...state,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
     createProjectError(state, action) {
       return {
         ...state,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
 
@@ -64,14 +63,14 @@ const projectSlice = createSlice({
       return {
         ...state,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
     cloneProjectError(state, action) {
       return {
         ...state,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
 
@@ -85,14 +84,14 @@ const projectSlice = createSlice({
       return {
         ...state,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
     editProjectError(state, action) {
       return {
         ...state,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
 
@@ -106,14 +105,14 @@ const projectSlice = createSlice({
       return {
         ...state,
         isLoadingProject: false,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
     deleteProjectError(state, action) {
       return {
         ...state,
         isLoadingProject: action.payload.isLoadingProject,
-        isErrorFetch: action.payload.data,
+        isErrorFetchProject: action.payload.data,
       };
     },
   },

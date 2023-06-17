@@ -1,28 +1,37 @@
-.ContentMockAPI-container{
- display: flex;
- flex-grow: 1;
- flex-wrap: wrap;
- justify-content: space-between;
+*{
+  box-sizing: border-box;
 }
 
-.ContentMockAPI-create span:first-child{
+.ContentMockAPI-container {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  padding-bottom: 4vh;
+}
+
+.container-open{
+  justify-content: space-between;
+  padding: 0 1vh;
+}
+
+.ContentMockAPI-create span:first-child {
   font-size: 4vh;
   color: #424242;
   padding-right: 0;
 }
 
-.ContentMockAPI-create{
+.ContentMockAPI-create {
   padding-bottom: 5vh;
 }
 
-.ContentMockAPI-create span{
+.ContentMockAPI-create span {
   font-size: 3vh;
   color: #989898;
   padding: 0 3vh;
 }
 
-.ContentMockAPI-create button{
-  background-color: #ABA890;
+.ContentMockAPI-create button {
+  background-color: #aba890;
   padding: 15px;
   border: none;
   border-radius: 20px;
@@ -31,17 +40,109 @@
   color: #424242;
 }
 
-.ContentMockAPI-create button:hover{
-  background-color: #95916E;
-
+.ContentMockAPI-create button:hover {
+  background-color: #95916e;
 }
 
-.ContentMockAPI-empty-project{
+.ContentMockAPI-empty-project {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   font-size: 5vh;
-  color: #64624D;
+  color: #64624d;
   padding-bottom: 20vh;
+}
+
+.modal-create__title p {
+  font-size: 4vh;
+  padding-bottom: 1vh;
+}
+
+.modal-create-content hr {
+  margin: 1vh 0;
+}
+
+.modal-create__input span {
+  font-size: 3vh;
+}
+
+.modal-create__input p {
+  font-size: 2vh;
+  color: #989898;
+}
+
+.modal-create__input input {
+  margin: 2vh 0;
+  background: #e7e7e7;
+  width: 100%;
+  height: 7vh;
+  padding: 16px;
+  font-size: 2vh;
+  border-radius: 20px;
+  border: none;
+  outline-color: #868366;
+}
+.modal-create__input input::placeholder {
+  color: #989898;
+}
+
+.modal-create__buttons{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1vh;
+}
+
+.modal-create__buttons button {
+  font-size: 3vh;
+  padding: 2vh 2vh;
+  background-color: #a7a381;
+  color: #555647;
+  border-radius: 20px;
+  border: none;
+  width: 10vw;
+  cursor: pointer;
+}
+
+.modal-create__buttons button:last-child{
+  background-color: #A6FF4D;
+  color: #497F21;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.modal-create__buttons button:last-child:hover{
+  background-color: #90db45;
+  color: #ebffdb;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.modal-create__buttons button:first-child{
+  background-color: #FE6464;
+  color: rgb(250, 220, 220);
+  font-weight: bold;
+  transition: 0.3s;
+}
+.modal-create__buttons button:first-child:hover{
+  background-color: #d85454;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.auth-block__input__tooltip{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.auth-block__input__tooltip p{
+  margin-right: 5px;
+}
+
+.input-dirty p{
+  color: #be2222
+}
+
+.input-dirty input{
+  border: 1px solid #be2222;
 }

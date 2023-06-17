@@ -8,7 +8,7 @@ projectRouter.get('/getProjects/:id', projectController.GetUserProject);
 projectRouter.post('/createProject', projectController.CreateUserProject);
 projectRouter.post('/cloneProject', projectController.CloneUserProject);
 projectRouter.put('/editProject', projectController.EditUserProject);
-projectRouter.delete('/deleteProject', projectController.DeleteUserProject);
+projectRouter.delete('/deleteProject/:id', projectController.DeleteUserProject);
 
 export default projectRouter; 
 

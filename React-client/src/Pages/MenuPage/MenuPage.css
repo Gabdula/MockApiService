@@ -1,16 +1,21 @@
 .menuPage-container {
   display: flex;
+  height: 100vh;
 }
 
 .menuPage-content {
+  background-color: #DDDDDD;
+  width: calc(100vw - 18vw);
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  flex: 1;
+  padding-left: 2vh;
 }
 
 .menuPage-sideBar {
-  height: 100vh;
   min-width: 18vw;
-  background-color: #D9D9D9;
+  background-color: #DDDDDD;
 }
 
 .menuPage-navigation {
@@ -21,14 +26,8 @@
   
   background-position: 100%;
   background-repeat: no-repeat;
-  width: calc(100vw - 18vw);
-  height: 150px;
-}
 
-.menuPage-content {
-  background-color: #DDDDDD;
-  width: calc(100vw - 18vw);
-  
+  min-height: 150px;
 }
 
 .menuPage-navigation__pageTitle{
@@ -36,10 +35,12 @@
   align-items: center;
   font-size: 4vh;
   padding-bottom: 6vh;
+  
 }
 
 .menuPage-navigation__pageTitle img{
   padding: 0 1vw;
+  cursor: pointer;
 }
 
 .menuPage-navigation__links{

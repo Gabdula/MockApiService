@@ -6,7 +6,7 @@ const Tooltip = (props) => {
   return (
     <>
       <div className="tooltip-child">
-        {props.children}
+        {props.align ? props.children : <div className='tooltip-child-noText'>{props.children}</div>}
         <div className="tooltip-container">
           <div className='tooltip-wrapper'>
             {props.tooltip.map((text) => (

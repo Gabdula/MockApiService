@@ -7,7 +7,7 @@ const modalInfoSlice = createSlice({
       modalActive: false,
       imgInfo: '',
       title: '',
-      text: ''
+      text: '',
     }
   },
   reducers: {

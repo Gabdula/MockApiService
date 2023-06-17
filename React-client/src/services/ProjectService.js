@@ -5,19 +5,20 @@ export default class ProjectService {
     return await $api.get(`/proj/getProjects/${userID}`);
   }
 
-  static async createProject(projectName, userID, prefixApi) {
-    return await $api.get('/proj/createProject', { projectName, userID, prefixApi });
+  static async createProject(project_name, user_id, prefix_api) {
+    return await $api.post('/proj/createProject', { project_name, user_id, prefix_api });
   }
 
-  static async cloneProject(projectID) {
-    return await $api.get('/proj/cloneProject', { projectID });
+  static async cloneProject(project_id, user_id) {
+    return await $api.post('/proj/cloneProject', { project_id, user_id });
   }
 
-  static async editProject(projectID, projectName, prefixApi) {
-    return await $api.get('/proj/editProject', { projectID, projectName, prefixApi });
+  static async editProject(project_id, project_name, prefix_api) {
+    return await $api.put('/proj/editProject', { project_id, project_name, prefix_api });
   }
 
-  static async deleteProject(projectID) {
-    return await $api.get('/proj/deleteProject', { projectID });
+  static async deleteProject(project_id) {
+    console.log(project_id)
+    return await $api.delete(`/proj/deleteProject/${project_id}`);
   }
 }

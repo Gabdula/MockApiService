@@ -26,12 +26,6 @@ export const getUserProjectsAction = (userID) => async (dispatch) => {
       getUserProjectsSuccess({
         dataProject: response.data,
         isLoadingProject: false,
-        data: {
-          modalActive: true,
-          imgInfo: 'accept',
-          title: 'Успешная регистрация',
-          text: 'Ваш аккаунт успешно создан, пожалуйста активируйте его, перейдя, по отправленной вам ссылке на почту.',
-        },
       }),
     );
   } catch (e) {
@@ -60,11 +54,13 @@ export const createProjectAction = (projectName, userID, prefixApi) => async (di
         data: {
           modalActive: true,
           imgInfo: 'accept',
-          title: 'Успешная регистрация',
-          text: 'Ваш аккаунт успешно создан, пожалуйста активируйте его, перейдя, по отправленной вам ссылке на почту.',
+          title: 'Создание проекта',
+          text: 'Проект успешно создан.',
+          
         },
       }),
     );
+    store.dispatch(getUserProjectsAction(userID))
   } catch (e) {
     store.dispatch(
       createProjectError({
@@ -72,18 +68,19 @@ export const createProjectAction = (projectName, userID, prefixApi) => async (di
         data: {
           modalActive: true,
           imgInfo: 'error',
-          title: 'Ошибка регистрации',
+          title: 'Создание проекта',
           text: e.response?.data.message,
+          
         },
       }),
     );
   }
 };
 
-export const cloneProjectAction = (projectID) => async (dispatch) => {
+export const cloneProjectAction = (projectID, userID) => async (dispatch) => {
   try {
     store.dispatch(cloneProjectLoad({ isLoadingProject: true }));
-    const response = await ProjectService.cloneProject(projectID);
+    const response = await ProjectService.cloneProject(projectID, userID);
     store.dispatch(
       cloneProjectSuccess({
         dataProject: response.data,
@@ -91,11 +88,13 @@ export const cloneProjectAction = (projectID) => async (dispatch) => {
         data: {
           modalActive: true,
           imgInfo: 'accept',
-          title: 'Успешная регистрация',
-          text: 'Ваш аккаунт успешно создан, пожалуйста активируйте его, перейдя, по отправленной вам ссылке на почту.',
+          title: 'Успешная клонирование',
+          text: 'Ваш проект успешно клонирован.',
+          
         },
       }),
     );
+    store.dispatch(getUserProjectsAction(userID))
   } catch (e) {
     store.dispatch(
       cloneProjectError({
@@ -103,7 +102,7 @@ export const cloneProjectAction = (projectID) => async (dispatch) => {
         data: {
           modalActive: true,
           imgInfo: 'error',
-          title: 'Ошибка регистрации',
+          title: 'Ошибка клонирования',
           text: e.response?.data.message,
         },
       }),
@@ -111,7 +110,7 @@ export const cloneProjectAction = (projectID) => async (dispatch) => {
   }
 };
 
-export const editProjectAction = (projectID, projectName, prefixApi) => async (dispatch) => {
+export const editProjectAction = (projectID, projectName, prefixApi, userID) => async (dispatch) => {
   try {
     store.dispatch(editProjectLoad({ isLoadingProject: true }));
     const response = await ProjectService.editProject(projectID, projectName, prefixApi);
@@ -122,11 +121,13 @@ export const editProjectAction = (projectID, projectName, prefixApi) => async (d
         data: {
           modalActive: true,
           imgInfo: 'accept',
-          title: 'Успешная регистрация',
-          text: 'Ваш аккаунт успешно создан, пожалуйста активируйте его, перейдя, по отправленной вам ссылке на почту.',
+          title: 'Успешное редактирование',
+          text: 'Проект успешно изменен.',
+          
         },
       }),
     );
+    store.dispatch(getUserProjectsAction(userID))
   } catch (e) {
     store.dispatch(
       editProjectError({
@@ -134,15 +135,16 @@ export const editProjectAction = (projectID, projectName, prefixApi) => async (d
         data: {
           modalActive: true,
           imgInfo: 'error',
-          title: 'Ошибка регистрации',
+          title: 'Ошибка редактирования проекта',
           text: e.response?.data.message,
+          
         },
       }),
     );
   }
 };
 
-export const deleteProjectAction = (projectID) => async (dispatch) => {
+export const deleteProjectAction = (projectID, userID) => async (dispatch) => {
   try {
     store.dispatch(deleteProjectLoad({ isLoadingProject: true }));
     const response = await ProjectService.deleteProject(projectID);
@@ -153,11 +155,13 @@ export const deleteProjectAction = (projectID) => async (dispatch) => {
         data: {
           modalActive: true,
           imgInfo: 'accept',
-          title: 'Успешная регистрация',
-          text: 'Ваш аккаунт успешно создан, пожалуйста активируйте его, перейдя, по отправленной вам ссылке на почту.',
+          title: 'Удаление проекта',
+          text: 'Проект успешно удален.',
+          
         },
       }),
     );
+    store.dispatch(getUserProjectsAction(userID))
   } catch (e) {
     store.dispatch(
       deleteProjectError({
@@ -165,8 +169,9 @@ export const deleteProjectAction = (projectID) => async (dispatch) => {
         data: {
           modalActive: true,
           imgInfo: 'error',
-          title: 'Ошибка регистрации',
+          title: 'Удаление проекта',
           text: e.response?.data.message,
+          
         },
       }),
     );

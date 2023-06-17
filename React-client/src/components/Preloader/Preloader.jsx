@@ -3,7 +3,7 @@ import React from 'react';
 const Preloader = () => {
   return (
     <div className="conatainer-preloader">
-      <span class="loader"></span>
+      <span className="loader"></span>
     </div>
   );
 };

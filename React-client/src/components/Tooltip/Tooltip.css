@@ -33,3 +33,12 @@
   max-height: 500px;
 }
 
+.tooltip-child img{
+  width: 15px;
+}
+
+.tooltip-child-noText{
+  position: absolute;
+  top: 20;
+}
+

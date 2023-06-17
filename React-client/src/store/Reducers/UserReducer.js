@@ -6,7 +6,7 @@ const userSlice = createSlice({
     user: {},
     isAuth: false,
     isLoadingUser: true,
-    isErrorFetch: {},
+    isErrorFetchUser: {},
     isSuccess: false,
   },
   reducers: {
@@ -26,11 +26,11 @@ const userSlice = createSlice({
         isLoadingUser: false,
         user: action.payload.dataUser,
         isAuth: true,
-        isErrorFetch: action.payload.data,
+        isErrorFetchUser: action.payload.data,
       };
     },
     userLoginError(state, action) {
-      return { ...state, isLoadingUser: action.payload.isLoadingUser, isErrorFetch: action.payload.data };
+      return { ...state, isLoadingUser: action.payload.isLoadingUser, isErrorFetchUser: action.payload.data };
     },
     ///////////////////////////////////
     //         registration          //
@@ -44,7 +44,7 @@ const userSlice = createSlice({
         isLoadingUser: action.payload.isLoadingUser,
         user: action.payload.dataUser,
         isAuth: false,
-        isErrorFetch: action.payload.data,
+        isErrorFetchUser: action.payload.data,
         isSuccess: action.payload.isSuccess,
       };
     },
@@ -52,13 +52,13 @@ const userSlice = createSlice({
       return {
         ...state,
         isLoadingUser: action.payload.isLoadingUser,
-        isErrorFetch: action.payload.data,
+        isErrorFetchUser: action.payload.data,
         isSuccess: action.payload.isSuccess,
       };
     },
     ///////////////////////////////////
     //            logout             //
-    ///////////////////////////////////
+    /////////////////////////////////// 
     userLogout(state, action) {
       return { ...state, isLoadingUser: action.payload.isLoadingUser };
     },
@@ -69,11 +69,11 @@ const userSlice = createSlice({
         isLoadingUser: action.payload.isLoadingUser,
         user: {},
         isAuth: false,
-        isErrorFetch: action.payload.data,
+        isErrorFetchUser: action.payload.data,
       };
     },
     userLogoutError(state, action) {
-      return { ...state, isLoadingUser: action.payload.isLoadingUser, isErrorFetch: action.payload.data };
+      return { ...state, isLoadingUser: action.payload.isLoadingUser, isErrorFetchUser: action.payload.data };
     },
     ///////////////////////////////////
     //           checkAuth           //
@@ -87,12 +87,12 @@ const userSlice = createSlice({
         ...state,
         user: action.payload.dataUser,
         isAuth: true,
-        isErrorFetch: {},
+        isErrorFetchUser: {},
         isLoadingUser: action.payload.isLoadingUser,
       };
     },
     checkAuthError(state, action) {
-      return { ...state, isLoadingUser: action.payload.isLoadingUser, isErrorFetch: action.payload.data };
+      return { ...state, isLoadingUser: action.payload.isLoadingUser, isErrorFetchUser: action.payload.data };
     },
   },
 });

@@ -45,6 +45,7 @@ export const accountRegistration = (login, email, password) => async (dispatch) 
           imgInfo: 'error',
           title: 'Ошибка регистрации',
           text: e.response?.data.message,
+          
         },
       }),
     );
@@ -65,6 +66,7 @@ export const accountLogin = (login, password) => async (dispatch) => {
           imgInfo: 'accept',
           title: 'Успешная авторизация',
           text: 'Ваш успешно вошли в свой аккаунт.',
+          
         },
       }),
     );
@@ -77,6 +79,7 @@ export const accountLogin = (login, password) => async (dispatch) => {
           imgInfo: 'error',
           title: 'Ошибка авторизации',
           text: e.response?.data.message,
+          
         },
       }),
     );
@@ -95,6 +98,7 @@ export const accountLogout = () => async (dispatch) => {
           imgInfo: 'alert',
           title: 'Выход из аккаунта',
           text: 'Вы успешео вышли из аккаунта',
+          
         },
       }),
     );
@@ -107,6 +111,7 @@ export const accountLogout = () => async (dispatch) => {
           imgInfo: 'error',
           title: 'Непредвиденная ошибка',
           text: e.response?.data.message,
+          
         },
       }),
     );
@@ -127,6 +132,7 @@ export const accountCheckAuth = () => async (dispatch) => {
           imgInfo: 'error',
           title: 'Непредвиденная ошибка',
           text: e.response?.data.message,
+          
         },
       }),
     );

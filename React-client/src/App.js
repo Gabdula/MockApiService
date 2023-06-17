@@ -16,31 +16,37 @@ import MenuPage from './Pages/MenuPage/MenuPage';
 
 function App() {
   const dispatch = useDispatch();
-  const modalInfo = useSelector((state) => state.modalInfo.modal);
-  const { isLoadingUser, isAuth, user } = useSelector((state) => state.userStore);
+
+  const modalInfo = useSelector((state) => state.modalInfo);
+  const { isLoadingUser, isAuth } = useSelector((state) => state.userStore);
 
   useEffect(() => {
     dispatch(loadPage({ isLoadingUser: false }));
     if (localStorage.getItem('token')) {
       dispatch(accountCheckAuth());
-      console.log('Пользователь авторизован');
-    } else {
-      console.log('Авторизуйтесь');
     }
   }, []);
 
   // Отрисовка модального окна ошибки
-  const { isErrorFetch } = useSelector((state) => state.userStore);
+  const { isErrorFetchUser } = useSelector((state) => state.userStore);
+  const { isErrorFetchProject } = useSelector((state) => state.projectStore);
   useEffect(() => {
-    if (isErrorFetch !== undefined) {
-      dispatch(setModalInfo(isErrorFetch));
+    if (isEmpty(isErrorFetchUser)) {
+      dispatch(setModalInfo(isErrorFetchUser));
     }
-  }, [isErrorFetch]);
+    if (isEmpty(isErrorFetchProject)) {
+      dispatch(setModalInfo(isErrorFetchProject));
+    }
+  }, [isErrorFetchUser, isErrorFetchProject]);
 
-  useEffect(() => {
-    console.log(user)
-    // dispatch(getUserProjectsAction(user.user.id))
-  }, [])
+  function isEmpty(obj) {
+    for (const prop in obj) {
+      if (Object.hasOwn(obj, prop)) {
+        return true;
+      }
+    }
+    return false;
+  }
   
   if (isLoadingUser) {
     return <Preloader />;
@@ -74,11 +80,12 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+     
       <ModalInfo
-        active={modalInfo.modalActive}
-        imgInfo={modalInfo.imgInfo}
-        title={modalInfo.title}
-        text={modalInfo.text}
+        active={modalInfo.modal.modalActive}
+        imgInfo={modalInfo.modal.imgInfo}
+        title={modalInfo.modal.title}
+        text={modalInfo.modal.text}
       />
     </>
   );
