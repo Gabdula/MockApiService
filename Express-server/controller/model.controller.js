@@ -1,7 +1,6 @@
 import ModelService from "../service/model.service.js";
-import functionDataGenerate from '../functions/DataGenerate.js'
 const modelService = new ModelService();
-const dataGenerate = new functionDataGenerate();
+import { fakerRU, faker } from '@faker-js/faker';
 
 class ModelController {
   async GetProjectModel(req, res){
@@ -13,9 +12,8 @@ class ModelController {
   }
   async CreateProjectModel(req, res){
     try {
-      const {idProject, modelName, countRecord, Schema} = req.body;
-      dataGenerate.choiceLanguage("ru");
-      const model = await modelService.createProjectModel(idProject, modelName, countRecord, Schema);
+      const {id_project, model_name, count_record, schema} = req.body;
+      const model = await modelService.createProjectModel(id_project, model_name, count_record, schema);
       // return res.json('Success');
       return res.json(model);
     } catch (e) {
@@ -23,24 +21,5 @@ class ModelController {
     }
   }
 }
-
-// {
-//   "Name": "Name",
-//   "Count": "5",
-//   "Schema": [
-//       {
-//           "name": "idProject",
-//           "type": "numberBigInt"
-//       },
-//               {
-//           "name": "fullname",
-//           "type": "locationCountry"
-//       },
-//               {
-//           "name": "image",
-//           "type": "internetEmail"
-//       }
-//   ]
-// }
 
 export default ModelController;

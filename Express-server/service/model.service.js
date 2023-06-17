@@ -1,6 +1,7 @@
 import client from '../db.js';
 import functionDataGenerate from '../functions/DataGenerate.js';
-const dataGenerate = new functionDataGenerate();
+const funcDataGenerate = new functionDataGenerate()
+
 
 class ModelService {
   async getProjectModel() {}
@@ -9,9 +10,7 @@ class ModelService {
     var jsonObject = [];
     for (let i = 0; i < countRecord; i++) {
       var tempObject = {};
-      for (let j = 0; j < Schema.length; j++) {
-        tempObject[Schema[j].name] = dataGenerate[`${Schema[j].type}`]();
-      } 
+      tempObject = funcDataGenerate.dataGenerate(Schema, 'ru')
       jsonObject.push(tempObject); 
     }
     
@@ -20,6 +19,7 @@ class ModelService {
       values ($1, $2, $3)`,
       [JSON.stringify(jsonObject), modelName, idProject],
     );
+    return jsonObject
   }
 }
 
