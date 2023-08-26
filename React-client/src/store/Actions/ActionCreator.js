@@ -65,7 +65,7 @@ export const accountLogin = (login, password) => async (dispatch) => {
           modalActive: true,
           imgInfo: 'accept',
           title: 'Успешная авторизация',
-          text: 'Ваш успешно вошли в свой аккаунт.',
+          text: 'Вы успешно вошли в свой аккаунт.',
           
         },
       }),

@@ -18,7 +18,6 @@ export default class ProjectService {
   }
 
   static async deleteProject(project_id) {
-    console.log(project_id)
     return await $api.delete(`/proj/deleteProject/${project_id}`);
   }
 }

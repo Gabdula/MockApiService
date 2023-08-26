@@ -4,7 +4,8 @@ import ModelController from '../controller/model.controller.js'
 const modelController = new ModelController();
 const modelRouter = new Router();
 
-modelRouter.get('/getModel', modelController.GetProjectModel);
+modelRouter.get('/:project_id/:prefix?/*', modelController.GetProjectModel);
+modelRouter.get('/:project_id', modelController.GetModels);
 modelRouter.post('/createModel', modelController.CreateProjectModel);
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { formatDate } from '../../services/FormatDateService';
 import { v4 as uuidv4 } from 'uuid';
 import './ProjectCard.css';
@@ -7,6 +7,7 @@ import ModalInfo from '../ModalInfo/ModalInfo';
 import { setModalInfo } from '../../store/Reducers/ModalInfoReducer';
 import { cloneProjectAction, deleteProjectAction, editProjectAction } from '../../store/Actions/ProjectActions';
 import useComponentVisible from '../../hooks/ComponentVisible';
+import { Context } from '../../Context/MockApi.context';
 
 const ProjectCard = (props) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const ProjectCard = (props) => {
   const [modalActiveDelete, setModalActiveDelete] = useState(false);
   const [projectName, setProjectName] = useState('');
   const [prefixApi, setPrefixApi] = useState('');
+  const {setIsModelPage, setProjectInfo} = useContext(Context);
   const { user } = useSelector((state) => state.userStore);
   let checkBtn;
 
@@ -68,14 +70,20 @@ const ProjectCard = (props) => {
     setModalActiveDelete(false);
   };
 
+  const openModelPage = () => {
+    setIsModelPage(true)
+    let projectName = props.projectName;
+    setProjectInfo({projectName})
+  }
+
   let id = uuidv4();
   return (
     <>
       <div className="project-card">
         <div className={props.menuOpen ? "project-card-container" : "project-card-container card-container-open"}>
-          <div className="project-card-topCard">
+          <div className="project-card-topCard" >
             <div>
-              <div className="project-card__title">
+              <div className="project-card__title" onClick={() => openModelPage()}>
                 <p>{props.projectName}</p>
               </div>
               <div className="project-card-time">

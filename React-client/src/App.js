@@ -13,6 +13,8 @@ import ProjectsUserPage from './Pages/ProjectsUserPage/ProjectsUserPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import RegistrationPage from './Pages/RegistrationPage/RegistrationPage';
 import MenuPage from './Pages/MenuPage/MenuPage';
+import WrapperRequest from './components/WrapperRequest/WrapperRequest';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -33,11 +35,14 @@ function App() {
   useEffect(() => {
     if (isEmpty(isErrorFetchUser)) {
       dispatch(setModalInfo(isErrorFetchUser));
-    }
-    if (isEmpty(isErrorFetchProject)) {
+    } 
+  }, [isErrorFetchUser]);
+  
+  useEffect(() => {
+    if (isEmpty(isErrorFetchProject)){
       dispatch(setModalInfo(isErrorFetchProject));
     }
-  }, [isErrorFetchUser, isErrorFetchProject]);
+  }, [isErrorFetchProject]);
 
   function isEmpty(obj) {
     for (const prop in obj) {
@@ -72,7 +77,7 @@ function App() {
     {
       path: '/',
       element: <Navigate to="/" />,
-    },
+    }
   ]);
 
 

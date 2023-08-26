@@ -38,6 +38,8 @@ const ModalInfo = (props) => {
   // console.log(props.children)
   return (
     <div className={props.active ? 'modal active' : 'modal disable'} onClick={() => closeModal()}>
+      <div className='modal__overlay'>
+
       <div
         className="modal__content"
         style={props.children !== undefined ? { width: `${props.width}vw`, alignItems: `${props.align}` } : {}}
@@ -54,6 +56,7 @@ const ModalInfo = (props) => {
         ) : (
           props.children
         )}
+      </div>
       </div>
     </div>
   );
